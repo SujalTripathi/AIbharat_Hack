@@ -1,5 +1,16 @@
 # CareerAI Deployment Guide
 
+## 🌐 Current Production URLs
+
+**Live Application URLs:**
+- **Frontend**: https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app/
+- **Backend API**: https://careerai-backend-83ct.onrender.com
+- **API Health Check**: https://careerai-backend-83ct.onrender.com/api/health
+
+These URLs are already configured and working in production. For local development, use `localhost` URLs as specified in `.env.example` files.
+
+---
+
 ## 🚀 Deploy to Vercel (Recommended)
 
 ### Prerequisites
@@ -35,8 +46,10 @@ git push origin main
 
 3. **Add Environment Variables:**
    ```
-   REACT_APP_API_URL=https://your-backend-url.com
+   REACT_APP_API_URL=https://careerai-backend-83ct.onrender.com/api
    ```
+   
+   > **Note**: Current production value is `https://careerai-backend-83ct.onrender.com/api`
 
 4. **Deploy:**
    - Click "Deploy"
@@ -67,9 +80,11 @@ git push origin main
    GROQ_API_KEY=your-groq-api-key
    JWT_SECRET=your-super-secret-jwt-key
    PORT=5000
-   FRONTEND_URL=https://your-frontend.vercel.app
+   FRONTEND_URL=https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app
    NODE_ENV=production
    ```
+   
+   > **Note**: Current production FRONTEND_URL is `https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app`
 
 4. **Deploy:**
    - Click "Create Web Service"

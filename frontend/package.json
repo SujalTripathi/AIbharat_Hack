@@ -2,7 +2,7 @@
   "name": "careerai-frontend",
   "version": "1.0.0",
   "private": true,
-  "proxy": "https://careerai-backend-83ct.onrender.com",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
