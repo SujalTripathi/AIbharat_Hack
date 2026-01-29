@@ -59,12 +59,6 @@ const JobRecommendations: React.FC = () => {
     return 'text-orange-400 bg-orange-500/20 border-orange-500/40';
   };
 
-  const getMatchGradient = (percentage: number) => {
-    if (percentage >= 80) return 'from-green-500 to-emerald-600';
-    if (percentage >= 60) return 'from-yellow-500 to-orange-600';
-    return 'from-orange-500 to-red-600';
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 px-8">
       <div className="max-w-7xl mx-auto animate-fadeIn">

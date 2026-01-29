@@ -117,12 +117,6 @@ const ResumeChecker: React.FC = () => {
     return 'redGradient';
   };
 
-  const getProgressColor = (score: number) => {
-    if (score >= 70) return '#10b981';
-    if (score >= 40) return '#fbbf24';
-    return '#ef4444';
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-indigo-900 py-12 px-8">
       <div className="max-w-6xl mx-auto">
