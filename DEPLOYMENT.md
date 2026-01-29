@@ -1,5 +1,14 @@
 # CareerAI Deployment Guide
 
+## ✅ Already Deployed!
+
+### Live URLs:
+- **Frontend**: https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app
+- **Backend**: https://careerai-backend-83ct.onrender.com
+- **API Health Check**: https://careerai-backend-83ct.onrender.com/api/health
+
+---
+
 ## 🚀 Deploy to Vercel (Recommended)
 
 ### Prerequisites
@@ -35,13 +44,13 @@ git push origin main
 
 3. **Add Environment Variables:**
    ```
-   REACT_APP_API_URL=https://your-backend-url.com
+   REACT_APP_API_URL=https://careerai-backend-83ct.onrender.com/api
    ```
 
 4. **Deploy:**
    - Click "Deploy"
    - Wait for build to complete
-   - Your frontend will be live at `https://your-project.vercel.app`
+   - Your frontend will be live at `https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app`
 
 ### Step 3: Deploy Backend (Render/Railway)
 
@@ -74,7 +83,7 @@ git push origin main
 4. **Deploy:**
    - Click "Create Web Service"
    - Wait for deployment
-   - Copy your backend URL (e.g., `https://careerai-backend.onrender.com`)
+   - Your backend is live at: `https://careerai-backend-83ct.onrender.com`
 
 #### Option B: Deploy to Railway
 
@@ -97,7 +106,7 @@ git push origin main
 1. **Update Vercel Environment Variable:**
    - Go to your Vercel project settings
    - Navigate to "Environment Variables"
-   - Update `REACT_APP_API_URL` with your backend URL
+   - Set `REACT_APP_API_URL=https://careerai-backend-83ct.onrender.com/api`
    - Redeploy
 
 ### Step 5: Configure CORS
@@ -107,7 +116,7 @@ Update `backend/src/index.ts` CORS settings:
 ```typescript
 app.use(cors({
   origin: [
-    'https://your-frontend.vercel.app',
+    'https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app',
     'http://localhost:3000' // Keep for local development
   ],
   credentials: true
@@ -161,7 +170,7 @@ Railway can host both frontend and backend:
 
 ### Frontend (.env.production)
 ```
-REACT_APP_API_URL=https://your-backend-url.com
+REACT_APP_API_URL=https://careerai-backend-83ct.onrender.com/api
 ```
 
 ### Backend (.env)
@@ -170,18 +179,18 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/careerai
 GROQ_API_KEY=gsk_your_groq_api_key
 JWT_SECRET=your-super-secret-jwt-key-min-32-characters
 PORT=5000
-FRONTEND_URL=https://your-frontend.vercel.app
+FRONTEND_URL=https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app
 NODE_ENV=production
 ```
 
 ## ✅ Post-Deployment Checklist
 
-- [ ] Frontend is accessible and loads correctly
-- [ ] Backend API is responding (test: `https://your-backend-url.com/api/health`)
-- [ ] CORS is configured correctly
-- [ ] MongoDB connection is working
-- [ ] Groq API integration is working
-- [ ] All pages are responsive on mobile/tablet/desktop
+- [x] Frontend is accessible and loads correctly
+- [x] Backend API is responding (test: `https://careerai-backend-83ct.onrender.com/api/health`)
+- [x] CORS is configured correctly
+- [x] MongoDB connection is working
+- [x] Groq API integration is working
+- [x] All pages are responsive on mobile/tablet/desktop
 - [ ] Resume upload works
 - [ ] Mock interview generates questions
 - [ ] Skill gap analysis runs
@@ -192,12 +201,12 @@ NODE_ENV=production
 
 Test backend health:
 ```bash
-curl https://your-backend-url.com/api/health
+curl https://careerai-backend-83ct.onrender.com/api/health
 ```
 
 Test API endpoint:
 ```bash
-curl https://your-backend-url.com/api/jobs
+curl https://careerai-backend-83ct.onrender.com/api/jobs
 ```
 
 ## 🐛 Troubleshooting
@@ -251,8 +260,9 @@ curl https://your-backend-url.com/api/jobs
 ## 🎉 You're Live!
 
 Share your project:
-- Frontend: `https://your-project.vercel.app`
-- API: `https://your-backend.onrender.com`
+- **Frontend**: https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app
+- **Backend API**: https://careerai-backend-83ct.onrender.com
+- **API Health**: https://careerai-backend-83ct.onrender.com/api/health
 
 ---
 

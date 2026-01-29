@@ -2,6 +2,14 @@
 
 > Complete full-stack application for AI-powered resume analysis, mock interviews, skill gap analysis, and job recommendations.
 
+## 🌐 Live Deployment
+
+- **🎨 Frontend**: https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app
+- **⚡ Backend API**: https://careerai-backend-83ct.onrender.com
+- **✅ Health Check**: https://careerai-backend-83ct.onrender.com/api/health
+
+---
+
 ## 🚀 Features
 
 ### 1. AI Resume & ATS Score Checker

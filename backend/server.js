@@ -21,7 +21,10 @@ if (!fs.existsSync(uploadsDir)) {
 
 // Middleware
 app.use(cors({
-  origin: true, // Allow all origins in development
+  origin: [
+    'https://a-ibharat-hack-git-main-sujaltripathis-projects.vercel.app',
+    'http://localhost:3000' // Keep for local development
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
