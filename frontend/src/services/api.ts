@@ -1,6 +1,9 @@
 import axios from 'axios';
 
+// Production backend URL (set in Vercel environment variables for override)
 const API_URL = process.env.REACT_APP_API_URL || 'https://careerai-backend-83ct.onrender.com/api';
+
+console.log('🚀 API Base URL:', API_URL); // Debug log to verify URL
 
 const api = axios.create({
   baseURL: API_URL,
