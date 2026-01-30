@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-// Production backend URL (set in Vercel environment variables for override)
+// Production backend URL - Vercel doesn't use .env.production files
+// Set REACT_APP_API_URL in Vercel dashboard to override this
 const API_URL = process.env.REACT_APP_API_URL || 'https://careerai-backend-83ct.onrender.com/api';
 
 console.log('🚀 API Base URL:', API_URL); // Debug log to verify URL
