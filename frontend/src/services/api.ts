@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// IMPORTANT: Hardcoded production URL to avoid environment variable issues
+// PRODUCTION URL - DO NOT CHANGE
 const API_URL = 'https://careerai-backend-83ct.onrender.com/api';
 
-console.log('🚀 API Base URL:', API_URL); // Debug log to verify URL
+console.log('🚀 [v2] API Base URL:', API_URL); // v2 - Force cache refresh
 
 const api = axios.create({
   baseURL: API_URL,
