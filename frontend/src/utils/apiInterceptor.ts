@@ -26,10 +26,8 @@ export const setupAPIInterceptors = (apiInstance: AxiosInstance) => {
         config.headers.Authorization = `Bearer ${token}`;
       }
 
-      // Add request ID for tracking
-      if (config.headers) {
-        config.headers['X-Request-ID'] = generateRequestId();
-      }
+      // Note: X-Request-ID removed due to CORS restrictions on deployed backend
+      // Can be re-enabled if backend CORS is updated to allow this header
 
       // Log request in development
       if (process.env.NODE_ENV === 'development') {
@@ -164,12 +162,8 @@ export const setupAPIInterceptors = (apiInstance: AxiosInstance) => {
 };
 
 /**
- * Generate unique request ID
+ * Retry failed requests
  */
-function generateRequestId(): string {
-  return `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-}
-
 /**
  * Log error to monitoring service
  */
