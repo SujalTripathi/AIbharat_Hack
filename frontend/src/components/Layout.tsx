@@ -161,13 +161,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div>
                 <h3 className="text-white font-bold text-lg mb-4">Connect With Us</h3>
                 <div className="flex gap-3 mb-4">
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="https://github.com/SujalTripathi" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Github size={20} />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="https://x.com/sujaltripa48643" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Twitter size={20} />
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="https://www.linkedin.com/in/sujaltripathi/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Linkedin size={20} />
                   </a>
                   <a href="mailto:feedback@careerai.com" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
