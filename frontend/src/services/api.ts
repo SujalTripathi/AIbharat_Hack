@@ -1,16 +1,21 @@
 import axios from 'axios';
+import { setupAPIInterceptors } from '../utils/apiInterceptor';
 
 // PRODUCTION URL - DO NOT CHANGE
 const API_URL = 'https://careerai-backend-83ct.onrender.com/api';
 
-console.log('🚀 [v2] API Base URL:', API_URL); // v2 - Force cache refresh
+console.log('🚀 [v3] API Base URL:', API_URL); // v3 - Enhanced with interceptors
 
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 30000, // 30 seconds timeout
 });
+
+// Setup interceptors for better error handling and monitoring
+setupAPIInterceptors(api);
 
 // User API
 export const userAPI = {
