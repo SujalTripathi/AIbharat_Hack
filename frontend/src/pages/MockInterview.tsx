@@ -43,9 +43,48 @@ const MockInterview: React.FC = () => {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const validateJobRole = (role: string): boolean => {
+    // List of valid job roles
+    const validRoles = [
+      'software engineer', 'developer', 'frontend developer', 'backend developer', 'full stack developer',
+      'data scientist', 'data analyst', 'machine learning engineer', 'ai engineer', 'devops engineer',
+      'product manager', 'project manager', 'business analyst', 'ui ux designer', 'graphic designer',
+      'marketing manager', 'sales executive', 'accountant', 'hr manager', 'content writer',
+      'seo specialist', 'digital marketing', 'cloud engineer', 'system administrator', 'network engineer',
+      'cybersecurity analyst', 'qa engineer', 'test engineer', 'mobile developer', 'web developer',
+      'java developer', 'python developer', 'react developer', 'angular developer', 'node developer',
+      'database administrator', 'blockchain developer', 'game developer', 'embedded engineer'
+    ];
+
+    const normalizedRole = role.toLowerCase().trim();
+    
+    // Check if role is too short
+    if (normalizedRole.length < 3) return false;
+    
+    // Check if role contains only invalid characters
+    if (!/[a-zA-Z]/.test(normalizedRole)) return false;
+    
+    // Check if it matches common job roles
+    const isValid = validRoles.some(validRole => 
+      normalizedRole.includes(validRole) || validRole.includes(normalizedRole)
+    );
+    
+    // Also accept if it has professional keywords
+    const professionalKeywords = ['engineer', 'developer', 'manager', 'analyst', 'designer', 'specialist', 'consultant', 'architect', 'lead', 'coordinator'];
+    const hasKeyword = professionalKeywords.some(keyword => normalizedRole.includes(keyword));
+    
+    return isValid || hasKeyword;
+  };
+
   const handleGenerateQuestions = async () => {
     if (!jobRole) {
       setError('Please enter a job role');
+      return;
+    }
+
+    // Validate job role
+    if (!validateJobRole(jobRole)) {
+      setError('⚠️ Please enter a valid job role (e.g., Software Engineer, Data Scientist, Product Manager)');
       return;
     }
 

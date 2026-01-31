@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { History as HistoryIcon, FileText, MessageSquare, TrendingUp, Award, Clock, Target, CheckCircle, AlertCircle } from 'lucide-react';
+import { History as HistoryIcon, FileText, MessageSquare, TrendingUp, Award, Clock, Target, CheckCircle, AlertCircle, Download, TrendingDown, Medal, Star } from 'lucide-react';
 import { userAPI } from '../services/api';
 import { getUserId } from '../utils/storage';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -44,6 +44,82 @@ const History: React.FC = () => {
     });
   };
 
+  const exportToCSV = () => {
+    if (!history) return;
+
+    const csvRows = [];
+    csvRows.push(['Type', 'Date', 'Score', 'Details'].join(','));
+
+    if (history.resumeAnalyses) {
+      history.resumeAnalyses.forEach((analysis: any) => {
+        csvRows.push([
+          'Resume Analysis',
+          formatDate(analysis.createdAt),
+          analysis.atsScore,
+          'ATS Score'
+        ].join(','));
+      });
+    }
+
+    if (history.interviews) {
+      history.interviews.forEach((interview: any) => {
+        csvRows.push([
+          'Mock Interview',
+          formatDate(interview.createdAt),
+          interview.overallScore,
+          interview.jobRole
+        ].join(','));
+      });
+    }
+
+    const csvContent = csvRows.join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `careerai-history-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+  };
+
+  const getAchievementBadges = () => {
+    if (!history) return [];
+    
+    const badges = [];
+    
+    if (history.stats?.totalInterviews >= 5) {
+      badges.push({ icon: MessageSquare, title: 'Interview Pro', desc: '5+ interviews completed', color: 'from-green-500 to-emerald-600' });
+    }
+    
+    if (history.stats?.latestAtsScore >= 85) {
+      badges.push({ icon: Award, title: 'ATS Master', desc: 'ATS Score 85+', color: 'from-yellow-500 to-orange-600' });
+    }
+    
+    if (history.stats?.averageInterviewScore >= 75) {
+      badges.push({ icon: Star, title: 'Top Performer', desc: 'Avg Score 75+', color: 'from-purple-500 to-pink-600' });
+    }
+    
+    if (history.resumeAnalyses?.length >= 3) {
+      badges.push({ icon: FileText, title: 'Resume Optimizer', desc: '3+ resume analyses', color: 'from-blue-500 to-cyan-600' });
+    }
+    
+    if (history.skillGaps?.length >= 2) {
+      badges.push({ icon: TrendingUp, title: 'Skill Builder', desc: '2+ skill gap reports', color: 'from-indigo-500 to-purple-600' });
+    }
+    
+    return badges;
+  };
+
+  const calculateProgress = () => {
+    if (!history?.resumeAnalyses || history.resumeAnalyses.length < 2) return null;
+    
+    const scores = history.resumeAnalyses.map((a: any) => a.atsScore).sort((a: number, b: number) => b - a);
+    const latest = scores[0];
+    const previous = scores[1];
+    const change = latest - previous;
+    
+    return { latest, previous, change, isImproving: change > 0 };
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
@@ -79,37 +155,100 @@ const History: React.FC = () => {
 
         {/* Stats Overview */}
         {history?.stats && (
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:scale-105 transition-all duration-300">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl mb-4">
-                <FileText className="text-white" size={32} />
+          <>
+            {/* Progress Indicator */}
+            {calculateProgress() && (
+              <div className="backdrop-blur-lg bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-2xl p-8 mb-6 animate-fadeIn">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className={`p-4 rounded-2xl ${calculateProgress()!.isImproving ? 'bg-green-500/20' : 'bg-red-500/20'}`}>
+                      {calculateProgress()!.isImproving ? (
+                        <TrendingUp className="text-green-400" size={32} />
+                      ) : (
+                        <TrendingDown className="text-red-400" size={32} />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1">
+                        {calculateProgress()!.isImproving ? 'Great Progress!' : 'Keep Working!'}
+                      </h3>
+                      <p className="text-gray-300">
+                        Your ATS score {calculateProgress()!.isImproving ? 'improved' : 'changed'} by{' '}
+                        <span className={`font-bold ${calculateProgress()!.isImproving ? 'text-green-400' : 'text-red-400'}`}>
+                          {Math.abs(calculateProgress()!.change)} points
+                        </span>
+                        {' '}(from {calculateProgress()!.previous} to {calculateProgress()!.latest})
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={exportToCSV}
+                    className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105 flex items-center gap-2 shadow-lg"
+                  >
+                    <Download size={20} />
+                    Export CSV
+                  </button>
+                </div>
               </div>
-              <div className="text-5xl font-bold text-white mb-2">
-                {history.stats.latestAtsScore || 'N/A'}
+            )}
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:scale-105 transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl mb-4">
+                  <FileText className="text-white" size={32} />
+                </div>
+                <div className="text-5xl font-bold text-white mb-2">
+                  {history.stats.latestAtsScore || 'N/A'}
+                </div>
+                <div className="text-sm text-gray-400">Latest ATS Score</div>
               </div>
-              <div className="text-sm text-gray-400">Latest ATS Score</div>
+              
+              <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:scale-105 transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl mb-4">
+                  <MessageSquare className="text-white" size={32} />
+                </div>
+                <div className="text-5xl font-bold text-white mb-2">
+                  {history.stats.totalInterviews}
+                </div>
+                <div className="text-sm text-gray-400">Mock Interviews</div>
+              </div>
+              
+              <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:scale-105 transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl mb-4">
+                  <Award className="text-white" size={32} />
+                </div>
+                <div className="text-5xl font-bold text-white mb-2">
+                  {history.stats.averageInterviewScore}
+                </div>
+                <div className="text-sm text-gray-400">Avg Interview Score</div>
+              </div>
             </div>
-            
-            <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:scale-105 transition-all duration-300">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl mb-4">
-                <MessageSquare className="text-white" size={32} />
+
+            {/* Achievement Badges */}
+            {getAchievementBadges().length > 0 && (
+              <div className="backdrop-blur-lg bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-2xl p-8 mb-8 animate-fadeIn">
+                <div className="flex items-center gap-3 mb-6">
+                  <Medal className="text-yellow-400" size={28} />
+                  <h2 className="text-2xl font-bold text-white">Your Achievements</h2>
+                </div>
+                <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+                  {getAchievementBadges().map((badge, index) => (
+                    <div 
+                      key={index}
+                      className="backdrop-blur-sm bg-white/5 border border-white/10 rounded-xl p-4 text-center hover:scale-105 transition-all duration-300 animate-slideUp"
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br ${badge.color} rounded-xl mb-3`}>
+                        <badge.icon className="text-white" size={24} />
+                      </div>
+                      <h4 className="text-sm font-bold text-white mb-1">{badge.title}</h4>
+                      <p className="text-xs text-gray-400">{badge.desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="text-5xl font-bold text-white mb-2">
-                {history.stats.totalInterviews}
-              </div>
-              <div className="text-sm text-gray-400">Mock Interviews</div>
-            </div>
-            
-            <div className="backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:scale-105 transition-all duration-300">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl mb-4">
-                <Award className="text-white" size={32} />
-              </div>
-              <div className="text-5xl font-bold text-white mb-2">
-                {history.stats.averageInterviewScore}
-              </div>
-              <div className="text-sm text-gray-400">Avg Interview Score</div>
-            </div>
-          </div>
+            )}
+          </>
         )}
 
         {/* Tabs */}

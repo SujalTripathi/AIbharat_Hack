@@ -226,6 +226,52 @@ const JobRecommendations: React.FC = () => {
                       </div>
                     )}
 
+                    {/* Job Portal Links */}
+                    <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-xl p-6">
+                      <h4 className="text-base font-semibold text-purple-300 mb-4 flex items-center gap-2">
+                        <ExternalLink size={20} />
+                        Find Similar Jobs on Major Portals:
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <a
+                          href={`https://internshala.com/jobs/${encodeURIComponent(rec.job.title.toLowerCase().replace(/\s+/g, '-'))}-jobs`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 rounded-lg text-white font-medium transition-all duration-300 hover:scale-105 shadow-lg"
+                        >
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                          </svg>
+                          Internshala
+                        </a>
+                        <a
+                          href={`https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent(rec.job.title)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-800 hover:to-blue-950 rounded-lg text-white font-medium transition-all duration-300 hover:scale-105 shadow-lg"
+                        >
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                          </svg>
+                          LinkedIn Jobs
+                        </a>
+                        <a
+                          href={`https://www.indeed.com/jobs?q=${encodeURIComponent(rec.job.title)}&l=${encodeURIComponent(rec.job.location || '')}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-lg text-white font-medium transition-all duration-300 hover:scale-105 shadow-lg"
+                        >
+                          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.566 21.5v-8.16h2.99v-3.34h-2.99V7.5c0-.93.26-1.57 1.61-1.57h1.78V2.86c-.31-.04-1.37-.13-2.59-.13-2.56 0-4.31 1.55-4.31 4.41V10H5.56v3.34h2.48V21.5h3.53z"/>
+                          </svg>
+                          Indeed
+                        </a>
+                      </div>
+                      <p className="text-xs text-gray-400 mt-3 text-center">
+                        Click to search for similar positions on these popular job portals
+                      </p>
+                    </div>
+
                     <div className="flex gap-4">
                       <button className="flex-1 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl text-white font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/50">
                         Apply Now

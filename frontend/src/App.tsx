@@ -12,6 +12,9 @@ import MockInterviewModern from './pages/MockInterviewModern';
 import SkillGapModern from './pages/SkillGapModern';
 import JobRecommendations from './pages/JobRecommendations';
 import History from './pages/History';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
 import { trackPageView } from './utils/analytics';
 import { performanceMonitor } from './utils/performance';
 
@@ -82,6 +85,9 @@ function App() {
               <Route path="/skill-gap" element={<SkillGapModern />} />
               <Route path="/jobs" element={<JobRecommendations />} />
               <Route path="/history" element={<History />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/cookies" element={<CookiePolicy />} />
             </Routes>
           </Layout>
         </Router>

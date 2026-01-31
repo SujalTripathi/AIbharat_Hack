@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FileText, MessageSquare, TrendingUp, Briefcase, History, Home, Menu, X, Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import { FileText, MessageSquare, TrendingUp, Briefcase, History, Home, Menu, X, Github, Twitter, Linkedin, Mail, Instagram } from 'lucide-react';
 import Logo from './Logo';
 
 interface LayoutProps {
@@ -170,6 +170,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <a href="https://www.linkedin.com/in/sujaltripathi/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Linkedin size={20} />
                   </a>
+                  <a href="https://www.instagram.com/official_sujaltripathi/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-pink-500/20 text-gray-400 hover:text-pink-400 rounded-xl transition-all hover:scale-110">
+                    <Instagram size={20} />
+                  </a>
                   <a href="mailto:feedback@careerai.com" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Mail size={20} />
                   </a>
@@ -305,14 +308,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               © 2026 CareerAI. AI-Powered Career Placement Tool.
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
+              <a href="https://github.com/SujalTripathi" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors" title="GitHub">
                 <Github size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
+              <a href="https://x.com/sujaltripa48643" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors" title="X (Twitter)">
                 <Twitter size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
+              <a href="https://www.linkedin.com/in/sujaltripathi/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors" title="LinkedIn">
                 <Linkedin size={20} />
+              </a>
+              <a href="https://www.instagram.com/official_sujaltripathi/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors" title="Instagram">
+                <Instagram size={20} />
               </a>
             </div>
           </div>
