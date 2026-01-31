@@ -60,10 +60,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 })}
               </nav>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu Button - Hidden since we have bottom nav */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 text-white hover:bg-white/10 rounded-xl transition-colors"
+                className="hidden lg:hidden p-2 text-white hover:bg-white/10 rounded-xl transition-colors"
               >
                 {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>

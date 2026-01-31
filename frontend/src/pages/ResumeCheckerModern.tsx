@@ -332,29 +332,35 @@ const ResumeCheckerModern: React.FC = () => {
                   </span>
                 </div>
                 
-                {/* Before/After Comparison */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-red-400 font-semibold text-sm">BEFORE</span>
+                {/* Suggestion Content */}
+                <div className="bg-gradient-to-br from-blue-500/5 to-purple-500/5 border border-blue-500/20 rounded-lg p-4">
+                  {typeof suggestion === 'string' ? (
+                    <p className="text-gray-200 text-sm leading-relaxed">{suggestion}</p>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-red-500/5 border border-red-500/20 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-red-400 font-semibold text-sm">BEFORE</span>
+                        </div>
+                        <p className="text-red-200 text-sm leading-relaxed">{suggestion.before || suggestion.original || 'Original text'}</p>
+                      </div>
+                      
+                      <div className="bg-green-500/5 border border-green-500/20 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-green-400 font-semibold text-sm">AFTER</span>
+                        </div>
+                        <p className="text-green-200 text-sm leading-relaxed">{suggestion.after || suggestion.improved || 'Improved text'}</p>
+                        
+                        <button 
+                          onClick={() => copyToClipboard(suggestion.after || suggestion.improved || '')}
+                          className="mt-3 flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
+                        >
+                          <Copy size={14} />
+                          Copy Improved Text
+                        </button>
+                      </div>
                     </div>
-                    <p className="text-red-200 text-sm leading-relaxed">{suggestion.before || suggestion.original}</p>
-                  </div>
-                  
-                  <div className="bg-green-500/5 border border-green-500/20 rounded-lg p-4">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-green-400 font-semibold text-sm">AFTER</span>
-                    </div>
-                    <p className="text-green-200 text-sm leading-relaxed">{suggestion.after || suggestion.improved}</p>
-                    
-                    <button 
-                      onClick={() => copyToClipboard(suggestion.after || suggestion.improved)}
-                      className="mt-3 flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
-                    >
-                      <Copy size={14} />
-                      Copy Improved Text
-                    </button>
-                  </div>
+                  )}
                 </div>
                 
                 {suggestion.reason && (
