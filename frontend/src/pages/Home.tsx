@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FileText, MessageSquare, TrendingUp, Briefcase, Sparkles, ArrowRight, Zap, Target, Award, Users, BarChart3, Brain, CheckCircle, Star } from 'lucide-react';
+import { FileText, MessageSquare, TrendingUp, Briefcase, Sparkles, ArrowRight, Zap, Target, Award, Users, Brain, CheckCircle, Star } from 'lucide-react';
 import Logo from '../components/Logo';
 
 const Home: React.FC = () => {

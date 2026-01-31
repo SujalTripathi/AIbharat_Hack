@@ -161,16 +161,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <div>
                 <h3 className="text-white font-bold text-lg mb-4">Connect With Us</h3>
                 <div className="flex gap-3 mb-4">
-                  <a href="#" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Github size={20} />
                   </a>
-                  <a href="#" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Twitter size={20} />
                   </a>
-                  <a href="#" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Linkedin size={20} />
                   </a>
-                  <a href="#" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
+                  <a href="mailto:feedback@careerai.com" className="p-3 bg-white/5 hover:bg-blue-500/20 text-gray-400 hover:text-blue-400 rounded-xl transition-all hover:scale-110">
                     <Mail size={20} />
                   </a>
                 </div>
@@ -186,9 +186,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   © 2026 CareerAI. Empowering careers with artificial intelligence.
                 </p>
                 <div className="flex gap-6 text-sm">
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a>
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</a>
-                  <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Cookie Policy</a>
+                  <Link to="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</Link>
+                  <Link to="/terms" className="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</Link>
+                  <Link to="/cookies" className="text-gray-400 hover:text-blue-400 transition-colors">Cookie Policy</Link>
                 </div>
               </div>
             </div>
@@ -305,13 +305,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               © 2026 CareerAI. AI-Powered Career Placement Tool.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-600 transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
